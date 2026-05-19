@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SRM IAS Motihari</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* SCROLLBAR */
+
+    ::-webkit-scrollbar{
+      width:8px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(#00f7ff,#0066ff);
+      border-radius:20px;
+    }
+
+    /* HEADER */
+
+    header{
+      width:100%;
+      padding:18px 8%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(0,0,0,0.3);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .logo span{
+      color:#00f7ff;
+      text-shadow:0 0 10px #00f7ff;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:35px;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      font-weight:500;
+      transition:0.4s;
+      position:relative;
+    }
+
+    nav ul li a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:#00f7ff;
+      transition:0.4s;
+    }
+
+    nav ul li a:hover::after{
+      width:100%;
+    }
+
+    nav ul li a:hover{
+      color:#00f7ff;
+    }
+
+    /* HERO */
+
+    .hero{
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:120px 8%;
+      background:
+      linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:#00f7ff;
+      filter:blur(180px);
+      opacity:0.15;
+      border-radius:50%;
+      top:10%;
+      left:10%;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-content h3{
+      color:#00f7ff;
+      letter-spacing:2px;
+      margin-bottom:15px;
+      font-size:20px;
+    }
+
+    .hero-content h1{
+      font-size:75px;
+      line-height:1.2;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .hero-content h1 span{
+      color:#00f7ff;
+      text-shadow:0 0 15px #00f7ff;
+    }
+
+    .hero-content p{
+      max-width:850px;
+      margin:auto;
+      line-height:1.9;
+      color:#d7d7d7;
+      font-size:18px;
+    }
+
+    .hero-btns{
+      margin-top:35px;
+      display:flex;
+      gap:20px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.4s;
+      display:inline-block;
+    }
+
+    .btn-primary{
+      background:linear-gradient(45deg,#00f7ff,#0066ff);
+      color:white;
+      box-shadow:0 0 20px rgba(0,247,255,0.5);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-5px);
+    }
+
+    .btn-secondary{
+      border:2px solid #00f7ff;
+      color:#00f7ff;
+    }
+
+    .btn-secondary:hover{
+      background:#00f7ff;
+      color:black;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:100px 8%;
+      position:relative;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:50px;
+      margin-bottom:15px;
+      font-weight:800;
+    }
+
+    .section-title span{
+      color:#00f7ff;
+    }
+
+    .section-title p{
+      color:#bcbcbc;
+    }
+
+    /* ABOUT */
+
+    .about-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .about-img img{
+      width:100%;
+      border-radius:30px;
+      box-shadow:0 0 40px rgba(0,247,255,0.25);
+    }
+
+    .glass{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(15px);
+      border-radius:25px;
+      padding:40px;
+    }
+
+    .about-text h3{
+      font-size:35px;
+      margin-bottom:20px;
+      color:#00f7ff;
+    }
+
+    .about-text p{
+      line-height:1.9;
+      color:#d0d0d0;
+    }
+
+    /* COURSES */
+
+    .course-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .course-card{
+      padding:35px;
+      border-radius:25px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      transition:0.5s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .course-card::before{
+      content:'';
+      position:absolute;
+      width:120px;
+      height:120px;
+      background:#00f7ff;
+      filter:blur(80px);
+      opacity:0.2;
+      top:-20px;
+      right:-20px;
+    }
+
+    .course-card:hover{
+      transform:translateY(-12px);
+      border-color:#00f7ff;
+    }
+
+    .course-card i{
+      font-size:45px;
+      color:#00f7ff;
+      margin-bottom:20px;
+    }
+
+    .course-card h3{
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .course-card p{
+      color:#cfcfcf;
+      line-height:1.8;
+    }
+
+    /* DIRECTOR */
+
+    .director{
+      text-align:center;
+    }
+
+    .director img{
+      width:230px;
+      height:230px;
+      border-radius:50%;
+      object-fit:cover;
+      border:5px solid #00f7ff;
+      box-shadow:0 0 40px rgba(0,247,255,0.5);
+      margin-bottom:25px;
+    }
+
+    .director h3{
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .director span{
+      color:#00f7ff;
+      font-weight:600;
+    }
+
+    .director p{
+      max-width:850px;
+      margin:25px auto;
+      color:#d7d7d7;
+      line-height:1.9;
+    }
+
+    /* STATS */
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:30px;
+    }
+
+    .stat-box{
+      text-align:center;
+      padding:40px;
+      border-radius:25px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-box h2{
+      font-size:55px;
+      color:#00f7ff;
+      margin-bottom:10px;
+    }
+
+    /* CONTACT */
+
+    .contact-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:40px;
+    }
+
+    .contact-box{
+      padding:40px;
+      border-radius:25px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-box h3{
+      margin-bottom:20px;
+      font-size:30px;
+      color:#00f7ff;
+    }
+
+    .contact-box p{
+      margin-bottom:15px;
+      color:#d7d7d7;
+    }
+
+    iframe{
+      width:100%;
+      height:320px;
+      border:none;
+      border-radius:20px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:25px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.1);
+      color:#cfcfcf;
+      background:#02030a;
+    }
+
+    /* TOP BUTTON */
+
+    .top-btn{
+      position:fixed;
+      bottom:25px;
+      right:25px;
+      width:55px;
+      height:55px;
+      border:none;
+      border-radius:50%;
+      background:linear-gradient(#00f7ff,#0066ff);
+      color:white;
+      font-size:20px;
+      cursor:pointer;
+      display:none;
+      z-index:1000;
+      box-shadow:0 0 20px rgba(0,247,255,0.5);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero-content h1{
+        font-size:48px;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .section-title h2{
+        font-size:38px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <nav>
+
+    <div class="logo">
+      SRM <span>IAS</span>
+    </div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#director">Director</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <div class="hero-content">
+
+    <h3>BEST COACHING INSTITUTE IN MOTIHARI</h3>
+
+    <h1>
+      SRM IAS <span>Motihari</span>
+    </h1>
+
+    <p>
+      Competitive Exam Coaching + 11th & 12th Arts Classes
+      under the expert guidance of Director Manish Sir.
+      Smart Classes, Test Series, Notes, Career Guidance
+      and Complete Success Support.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#courses" class="btn btn-primary">
+        Explore Courses
+      </a>
+
+      <a href="#contact" class="btn btn-secondary">
+        Contact Now
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <div class="section-title">
+    <h2>About <span>Institute</span></h2>
+    <p>Building Future Officers & Successful Students</p>
+  </div>
+
+  <div class="about-container">
+
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop">
+    </div>
+
+    <div class="about-text glass">
+
+      <h3>Why Choose SRM IAS?</h3>
+
+      <p>
+        SRM IAS Motihari is a trusted institute for
+        UPSC, BPSC, SSC, Railway, CTET, STET,
+        Bihar Police and Arts Classes.
+      </p>
+
+      <br>
+
+      <p>
+        We focus on concept clarity, disciplined study,
+        regular test practice and mentorship so students
+        can achieve excellent results in board exams and
+        government job competitions.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- COURSES -->
+
+<section id="courses">
+
+  <div class="section-title">
+    <h2>Our <span>Courses</span></h2>
+    <p>Complete Preparation for Every Goal</p>
+  </div>
+
+  <div class="course-grid">
+
+    <div class="course-card">
+      <i class="fa-solid fa-book-open"></i>
+      <h3>UPSC / BPSC</h3>
+      <p>Civil services preparation with current affairs, answer writing and mock tests.</p>
+    </div>
+
+    <div class="course-card">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <h3>11th & 12th Arts</h3>
+      <p>Bihar Board Arts preparation with notes, revision and test series.</p>
+    </div>
+
+    <div class="course-card">
+      <i class="fa-solid fa-train"></i>
+      <h3>SSC / Railway</h3>
+      <p>Special batches for SSC, Railway and government exams.</p>
+    </div>
+
+    <div class="course-card">
+      <i class="fa-solid fa-user-shield"></i>
+      <h3>Police & Defence</h3>
+      <p>Bihar Police, NDA, Army and Defence exam preparation.</p>
+    </div>
+
+    <div class="course-card">
+      <i class="fa-solid fa-chalkboard-user"></i>
+      <h3>CTET / STET</h3>
+      <p>Teacher exam preparation with practice sets and concept learning.</p>
+    </div>
+
+    <div class="course-card">
+      <i class="fa-solid fa-lightbulb"></i>
+      <h3>Foundation Course</h3>
+      <p>Strong base building for future competitive exams.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DIRECTOR -->
+
+<section id="director">
+
+  <div class="section-title">
+    <h2>Director <span>Message</span></h2>
+    <p>Guiding Students Towards Success</p>
+  </div>
+
+  <div class="director glass">
+
+    <img src="Manish sir.jpeg">
+
+    <h3>Manish Sir</h3>
+
+    <span>Director - SRM IAS Motihari</span>
+
+    <p>
+      “Success comes with dedication, discipline and proper guidance.
+      Our mission is to provide quality education and help students
+      achieve their dreams with confidence and excellence.”
+    </p>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+
+<section>
+
+  <div class="stats-grid">
+
+    <div class="stat-box">
+      <h2 id="students">0+</h2>
+      <p>Students</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="results">0+</h2>
+      <p>Selections</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="experience">0+</h2>
+      <p>Years Experience</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="coursesCount">0+</h2>
+      <p>Courses</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="section-title">
+    <h2>Contact <span>Us</span></h2>
+    <p>Admission Open Now</p>
+  </div>
+
+  <div class="contact-container">
+
+    <div class="contact-box">
+
+      <h3>Institute Details</h3>
+
+      <p><b>Institute:</b> SRM IAS Motihari</p>
+      <p><b>Director:</b> Manish Sir</p>
+      <p><b>Courses:</b> All Competitive Exams + Arts Classes</p>
+      <p><b>Location:</b> Motihari, Bihar</p>
+      <p><b>Phone:</b> +91-8340123526</p>
+      <p><b>Email:</b> srmiasmotihari@gmail.com</p>
+
+    </div>
+
+    <div class="contact-box">
+
+      <iframe
+      src="https://maps.google.com/maps?q=motihari&t=&z=13&ie=UTF8&iwloc=&output=embed">
+      </iframe>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  © 2026 SRM IAS Motihari | Designed By Anurag Prashar
+</footer>
+
+<!-- TOP BUTTON -->
+
+<button class="top-btn" id="topBtn">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+
+  // COUNTER ANIMATION
+
+  function counter(id,target){
+
+    let count = 0;
+
+    const element = document.getElementById(id);
+
+    const interval = setInterval(()=>{
+
+      count += Math.ceil(target/100);
+
+      if(count >= target){
+        count = target;
+        clearInterval(interval);
+      }
+
+      element.innerHTML = count + "+";
+
+    },20);
+
+  }
+
+  counter("students",5000);
+  counter("results",1200);
+  counter("experience",10);
+  counter("coursesCount",25);
+
+  // TOP BUTTON
+
+  const topBtn = document.getElementById("topBtn");
+
+  window.onscroll = function(){
+
+    if(document.documentElement.scrollTop > 300){
+      topBtn.style.display = "block";
+    }
+    else{
+      topBtn.style.display = "none";
+    }
+
+  };
+
+  topBtn.onclick = function(){
+
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    });
+
+  };
+
+</script>
+
+</body>
+</html>
